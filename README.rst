@@ -8,6 +8,7 @@ checksum validity to identify the type provided. The module supports these barco
 
    * DHL
    * DHL Box Number
+   * GLS
    * FedEx Express
    * FedEx Ground "96"
    * OnTrac
