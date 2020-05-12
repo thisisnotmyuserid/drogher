@@ -7,6 +7,7 @@ A package barcode string is tested against known shipper barcode types, matching
 checksum validity to identify the type provided. The module supports these barcode formats:
 
    * DHL
+   * DHL Box Number
    * FedEx Express
    * FedEx Ground "96"
    * OnTrac
