@@ -61,7 +61,36 @@ class TestDHLAWB:
         dhl = package.DHLAWB('165674025')
         assert dhl.matches_barcode == False
 
+class GLSInternational:
+    def test_barcode(self):
+        dhl = package.GLS('900599668973')
+        assert dhl.barcode == '900599668973'
 
+    def test_barcode_spaces(self):
+        dhl = package.GLS('900 5996 689 73')
+        assert dhl.barcode == '900599668973'
+
+    def test_tracking_number(self):
+        dhl = package.GLS('900599668973')
+        assert dhl.tracking_number == '900599668973'
+
+    def test_shipper(self):
+        dhl = package.GLS('900599668973')
+        assert dhl.shipper == 'GLS'
+
+    def test_is_valid(self):
+        dhl = package.GLS('900599668973')
+        assert dhl.is_valid == True
+
+    def test_matches_barcode(self):
+        dhl = package.GLS('900599668973')
+        assert dhl.matches_barcode == True
+
+    def test_not_matches_barcode(self):
+        # 9 digits instead of 10 digits
+        dhl = package.GLS('90059966')
+        assert dhl.matches_barcode == False
+    
 class TestFedExExpress:
     def test_barcode(self):
         fedex = package.FedExExpress('9632001960000000000400152152152158')

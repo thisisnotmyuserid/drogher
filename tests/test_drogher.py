@@ -2,6 +2,9 @@ import drogher
 
 
 class TestDrogher:
+    def test_gls_barcode(self):
+        package = drogher.barcode('900606363150')
+        assert package.shipper == 'GLS'
 
     def test_dhl_awb_barcode(self):
         package = drogher.barcode('1656740256')
