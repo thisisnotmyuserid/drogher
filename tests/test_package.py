@@ -1,34 +1,64 @@
 from drogher import package
 
 
-class TestDHL:
+class TestDHLEXPRESSBOXNUM:
     def test_barcode(self):
-        dhl = package.DHL('1656740256')
-        assert dhl.barcode == '1656740256'
+        dhl = package.DHLEXPRESSBOXNUM('JJD000298342000202806')
+        assert dhl.barcode == 'JJD000298342000202806'
 
     def test_barcode_spaces(self):
-        dhl = package.DHL('165 674 025 6')
-        assert dhl.barcode == '1656740256'
+        dhl = package.DHLEXPRESSBOXNUM('JJD00 02983 42000 202806')
+        assert dhl.barcode == 'JJD000298342000202806'
 
     def test_tracking_number(self):
-        dhl = package.DHL('1656740256')
-        assert dhl.tracking_number == '1656740256'
+        dhl = package.DHLEXPRESSBOXNUM('JJD000298342000202806')
+        assert dhl.tracking_number == 'JJD000298342000202806'
 
     def test_shipper(self):
-        dhl = package.DHL('1656740256')
+        dhl = package.DHLEXPRESSBOXNUM('JJD000298342000202806')
         assert dhl.shipper == 'DHL'
 
     def test_is_valid(self):
-        dhl = package.DHL('1656740256')
+        dhl = package.DHLEXPRESSBOXNUM('JJD000298342000202806')
         assert dhl.is_valid == True
 
     def test_matches_barcode(self):
-        dhl = package.DHL('1656740256')
+        dhl = package.DHLEXPRESSBOXNUM('JJD000298342000202806')
         assert dhl.matches_barcode == True
 
     def test_not_matches_barcode(self):
         # 9 digits instead of 10 digits
-        dhl = package.DHL('165674025')
+        dhl = package.DHLEXPRESSBOXNUM('JJD00029834200020280')
+        assert dhl.matches_barcode == False
+
+class TestDHLAWB:
+    def test_barcode(self):
+        dhl = package.DHLAWB('1656740256')
+        assert dhl.barcode == '1656740256'
+
+    def test_barcode_spaces(self):
+        dhl = package.DHLAWB('165 674 025 6')
+        assert dhl.barcode == '1656740256'
+
+    def test_tracking_number(self):
+        dhl = package.DHLAWB('1656740256')
+        assert dhl.tracking_number == '1656740256'
+
+    def test_shipper(self):
+        dhl = package.DHLAWB('1656740256')
+        assert dhl.shipper == 'DHL'
+
+    def test_is_valid(self):
+        dhl = package.DHLAWB('1656740256')
+        assert dhl.is_valid == True
+
+    def test_matches_barcode(self):
+        dhl = package.DHLAWB('1656740256')
+        assert dhl.matches_barcode == True
+
+    def test_not_matches_barcode(self):
+        # 9 digits instead of 10 digits
+        dhl = package.DHLAWB('165674025')
         assert dhl.matches_barcode == False
 
 

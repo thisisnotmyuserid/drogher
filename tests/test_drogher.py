@@ -2,8 +2,13 @@ import drogher
 
 
 class TestDrogher:
-    def test_dhl_barcode(self):
+
+    def test_dhl_awb_barcode(self):
         package = drogher.barcode('1656740256')
+        assert package.shipper == 'DHL'
+
+    def test_dhl_expressboxnum_barcode(self):
+        package = drogher.barcode('JJD000298342000202806')
         assert package.shipper == 'DHL'
 
     def test_fedex_express_barcode(self):
@@ -39,7 +44,7 @@ class TestDrogher:
         assert package.shipper is None
 
     def test_barcode_classes(self):
-        package = drogher.barcode('EF123456785US', barcode_classes=['DHL'])
+        package = drogher.barcode('EF123456785US', barcode_classes=['DHLAWB'])
         assert package.shipper is None
-        package = drogher.barcode('1656740256', barcode_classes=['DHL'])
+        package = drogher.barcode('1656740256', barcode_classes=['DHLAWB'])
         assert package.shipper == 'DHL'
